@@ -1,8 +1,5 @@
 ### images used
-data/*.jpg
-data/*.png
-data/output/*
-data/input/*
+data/*
 
 
 #########################
