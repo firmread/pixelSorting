@@ -1,33 +1,17 @@
-#include "testApp.h"
+#include "ofApp.h"
 
-ofImage inputImg;
-ofPixels outputImg;
-ofTexture texture;
-
-int NUM_MODES = 6;
-int BRIGHTNESS_MODE = 0;
-int SATURATION_MODE = 1;
-int LIGHTNESS_MODE = 2;
-int RED_MODE = 3;
-int GREEN_MODE = 4;
-int BLUE_MODE = 5;
-int curMode = RED_MODE;
-bool FUCKROWS = true;
-
-string inFilename = "nn-red-reed.jpg";
-//string inFilename = "mountain.jpg";
 
 
 //--------------------------------------------------------------
-void testApp::setup(){
-    inputImg.loadImage(inFilename);
+void ofApp::setup(){
+    inputImg.load(inFilename);
     float imgRescale = 0.6;
     inputImg.resize(inputImg.getWidth()*imgRescale,inputImg.getHeight()*imgRescale);
     ofSetWindowShape(inputImg.getWidth()*imgRescale, inputImg.getHeight()*imgRescale);
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ofApp::update(){
     ofImage out;
     if(FUCKROWS) {
         out = fuckImageRows(inputImg);
@@ -38,7 +22,7 @@ void testApp::update(){
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
     texture.draw(0,0);
 }
 //--------------------------------------------------------------
@@ -81,7 +65,7 @@ bool compareGreeness(ofColor a, ofColor b) {
 //--------------------------------------------------------------
 
 //for each row in input image, sort pixel brightness ascending, put row in output image
-ofImage testApp::fuckImageRows(ofImage input) {
+ofImage ofApp::fuckImageRows(ofImage input) {
     ofImage out;
     out.allocate(input.getWidth(), input.getHeight(),OF_IMAGE_COLOR);
     out.setColor(255);
@@ -117,7 +101,7 @@ ofImage testApp::fuckImageRows(ofImage input) {
 
 //--------------------------------------------------------------
 
-ofImage testApp::fuckImageCols(ofImage input) {
+ofImage ofApp::fuckImageCols(ofImage input) {
     ofImage out;
     out.allocate(input.getWidth(), input.getHeight(),OF_IMAGE_COLOR);
     vector<ofColor> line;
@@ -146,10 +130,10 @@ ofImage testApp::fuckImageCols(ofImage input) {
 }
 
 //--------------------------------------------------------------
-void testApp::exportImage(){
+void ofApp::exportImage(){
     
     ofImage in, out;
-    in.loadImage(inFilename);
+    in.load(inFilename);
     string outFilename = getOutFilename();
     
     if(FUCKROWS) {
@@ -159,12 +143,12 @@ void testApp::exportImage(){
     }
     cout << "Exporting image " << outFilename << " with width: " << out.getWidth() << ", height: " << out.getHeight() << " :::: input width: " << in.getWidth() << ", height: " << in.getHeight() << endl;
     
-    out.saveImage(outFilename);
+    out.save(outFilename);
 }
 
 //--------------------------------------------------------------
 
-string testApp::getOutFilename() {
+string ofApp::getOutFilename() {
     string fileBase = "out";
     int suffix = 0;
     bool foundUnique = false;
@@ -185,7 +169,7 @@ string testApp::getOutFilename() {
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
     
     if(key == '.') {
         curMode = (curMode+1)%NUM_MODES;
@@ -212,41 +196,41 @@ void testApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y){
+void ofApp::mouseMoved(int x, int y){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
 
 }
 
 //--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg){
 
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
