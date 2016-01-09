@@ -1,16 +1,10 @@
 #include "ofApp.h"
-
-
-
-//--------------------------------------------------------------
 void ofApp::setup(){
     inputImg.load(inFilename);
     float imgRescale = 0.6;
     inputImg.resize(inputImg.getWidth()*imgRescale,inputImg.getHeight()*imgRescale);
     ofSetWindowShape(inputImg.getWidth()*imgRescale, inputImg.getHeight()*imgRescale);
 }
-
-//--------------------------------------------------------------
 void ofApp::update(){
     ofImage out;
     if(FUCKROWS) {
@@ -20,49 +14,30 @@ void ofApp::update(){
     }
     texture.loadData(out);
 }
-
-//--------------------------------------------------------------
 void ofApp::draw(){
     texture.draw(0,0);
 }
-//--------------------------------------------------------------
+
 
 bool compareBrightness(ofColor a, ofColor b) {
     return a.getBrightness() > b.getBrightness();;
 }
-
-//--------------------------------------------------------------
-
 bool compareLightness(ofColor a, ofColor b) {
     return a.getLightness() > b.getLightness();
 }
-
-//--------------------------------------------------------------
-
-
 bool compareSaturation(ofColor a, ofColor b) {
     return a.getSaturation() > b.getSaturation();
 }
-
-//--------------------------------------------------------------
-
 bool compareRedness(ofColor a, ofColor b) {
     return a.r > b.r;
 }
-
-//--------------------------------------------------------------
-
 bool compareBlueness(ofColor a, ofColor b) {
     return a.b > b.b;
 }
-
-//--------------------------------------------------------------
-
 bool compareGreeness(ofColor a, ofColor b) {
     return a.g > b.g;
 }
 
-//--------------------------------------------------------------
 
 //for each row in input image, sort pixel brightness ascending, put row in output image
 ofImage ofApp::fuckImageRows(ofImage input) {
@@ -99,7 +74,7 @@ ofImage ofApp::fuckImageRows(ofImage input) {
     return out;
 }
 
-//--------------------------------------------------------------
+
 
 ofImage ofApp::fuckImageCols(ofImage input) {
     ofImage out;
@@ -129,7 +104,7 @@ ofImage ofApp::fuckImageCols(ofImage input) {
     return out;
 }
 
-//--------------------------------------------------------------
+
 void ofApp::exportImage(){
     
     ofImage in, out;
@@ -146,7 +121,7 @@ void ofApp::exportImage(){
     out.save(outFilename);
 }
 
-//--------------------------------------------------------------
+
 
 string ofApp::getOutFilename() {
     string fileBase = "out";
@@ -168,7 +143,7 @@ string ofApp::getOutFilename() {
     return s;
 }
 
-//--------------------------------------------------------------
+
 void ofApp::keyPressed(int key){
     
     if(key == '.') {
@@ -195,42 +170,12 @@ void ofApp::keyPressed(int key){
     
 }
 
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
 
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
-}
+void ofApp::keyReleased(int key){ }
+void ofApp::mouseMoved(int x, int y){ }
+void ofApp::mouseDragged(int x, int y, int button){ }
+void ofApp::mousePressed(int x, int y, int button){ }
+void ofApp::mouseReleased(int x, int y, int button){ }
+void ofApp::windowResized(int w, int h){ }
+void ofApp::gotMessage(ofMessage msg){ }
+void ofApp::dragEvent(ofDragInfo dragInfo){ }
