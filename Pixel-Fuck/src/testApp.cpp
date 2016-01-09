@@ -14,7 +14,7 @@ int BLUE_MODE = 5;
 int curMode = RED_MODE;
 bool FUCKROWS = true;
 
-string inFilename = "napalm.jpg";
+string inFilename = "nn-red-reed.jpg";
 //string inFilename = "mountain.jpg";
 
 
@@ -22,8 +22,8 @@ string inFilename = "napalm.jpg";
 void testApp::setup(){
     inputImg.loadImage(inFilename);
     float imgRescale = 0.6;
-    inputImg.resize(inputImg.width*imgRescale,inputImg.height*imgRescale);
-    ofSetWindowShape(inputImg.width*imgRescale, inputImg.height*imgRescale);
+    inputImg.resize(inputImg.getWidth()*imgRescale,inputImg.getHeight()*imgRescale);
+    ofSetWindowShape(inputImg.getWidth()*imgRescale, inputImg.getHeight()*imgRescale);
 }
 
 //--------------------------------------------------------------
@@ -83,12 +83,12 @@ bool compareGreeness(ofColor a, ofColor b) {
 //for each row in input image, sort pixel brightness ascending, put row in output image
 ofImage testApp::fuckImageRows(ofImage input) {
     ofImage out;
-    out.allocate(input.width, input.height,OF_IMAGE_COLOR);
+    out.allocate(input.getWidth(), input.getHeight(),OF_IMAGE_COLOR);
     out.setColor(255);
     vector<ofColor> line;
     
-    for(int y=0; y<input.height; y++) {
-        for(int x=0; x<input.width; x++){
+    for(int y=0; y<input.getHeight(); y++) {
+        for(int x=0; x<input.getWidth(); x++){
             line.push_back(input.getColor(x, y));
         }
         
@@ -106,7 +106,7 @@ ofImage testApp::fuckImageRows(ofImage input) {
             ofSort(line,compareGreeness);
         }
 
-        for(int x=0; x<input.width; x++) {
+        for(int x=0; x<input.getWidth(); x++) {
             out.setColor(x, y, line[x]);
         }
         line.clear();
@@ -119,11 +119,11 @@ ofImage testApp::fuckImageRows(ofImage input) {
 
 ofImage testApp::fuckImageCols(ofImage input) {
     ofImage out;
-    out.allocate(input.width, input.height,OF_IMAGE_COLOR);
+    out.allocate(input.getWidth(), input.getHeight(),OF_IMAGE_COLOR);
     vector<ofColor> line;
     
-    for(int x=0; x<input.width; x++){
-        for(int y=0; y<input.height; y++) {
+    for(int x=0; x<input.getWidth(); x++){
+        for(int y=0; y<input.getHeight(); y++) {
             line.push_back(input.getColor(x, y));
         }
         
@@ -137,7 +137,7 @@ ofImage testApp::fuckImageCols(ofImage input) {
             ofSort(line,compareRedness);
         }
         
-        for(int y=0; y<input.height; y++) {
+        for(int y=0; y<input.getHeight(); y++) {
             out.setColor(x, y, line[y]);
         }
         line.clear();
@@ -157,7 +157,7 @@ void testApp::exportImage(){
     } else {
         out = fuckImageCols(in);
     }
-    cout << "Exporting image " << outFilename << " with width: " << out.width << ", height: " << out.height << " :::: input width: " << in.width << ", height: " << in.height << endl;
+    cout << "Exporting image " << outFilename << " with width: " << out.getWidth() << ", height: " << out.getHeight() << " :::: input width: " << in.getWidth() << ", height: " << in.getHeight() << endl;
     
     out.saveImage(outFilename);
 }
