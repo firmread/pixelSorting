@@ -1,3 +1,7 @@
+originally from https://github.com/kimasendorf/ASDFPixelSort  
+doesn't run on Processing 3.0 for some reason. 2.2.1 can run it just fine. 
+
+
 ASDFPixelSort
 =============
 
